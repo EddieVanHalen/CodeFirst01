@@ -36,14 +36,20 @@ public partial class MainPageViewModel : BaseViewModel
         TopicsContent = new ObservableCollection<string>();
     }
 
+    /*
+
+     V TopicContentSelectionChanged i TopicSelectionChanged ya specialno ne ispolzoval Task i async
+
+     */
+
     [RelayCommand]
-    private async Task TopicContentSelectionChanged()
+    private void TopicContentSelectionChanged()
     {
         Books.Clear();
 
         if (SelectedTopicIndex == 0)
         {
-            var books = await Task.Run(() => LibraryDb.Books.Where(b => b.IdAuthor == (SelectedTopicItemIndex + 1)).ToList());
+            var books = LibraryDb.Books.Where(b => b.IdAuthor == (SelectedTopicItemIndex + 1)).ToList();
 
             foreach (var book in books)
             {
@@ -52,7 +58,7 @@ public partial class MainPageViewModel : BaseViewModel
         }
         else if(SelectedTopicIndex == 1)
         {
-            var themes = await Task.Run(() => LibraryDb.Books.Where(b => b.IdThemes == (SelectedTopicItemIndex + 1)).ToList());
+            var themes = LibraryDb.Books.Where(b => b.IdThemes == (SelectedTopicItemIndex + 1)).ToList();
 
             foreach (var theme in themes)
             {
@@ -61,7 +67,7 @@ public partial class MainPageViewModel : BaseViewModel
         }
         else if(SelectedTopicIndex == 2)
         {
-            var categories = await Task.Run(() => LibraryDb.Books.Where(b => b.IdCategory == (SelectedTopicItemIndex + 1)).ToList());
+            var categories = LibraryDb.Books.Where(b => b.IdCategory == (SelectedTopicItemIndex + 1)).ToList();
 
             foreach (var category in categories)
             {
@@ -71,12 +77,12 @@ public partial class MainPageViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    private async Task TopicSelectionChanged()
+    private void TopicSelectionChanged()
     {
         TopicsContent.Clear();
         if (SelectedTopicIndex == 0)
         {
-            var authors = await Task.Run(() => LibraryDb.Authors.ToList());
+            var authors = LibraryDb.Authors.ToList();
 
             foreach (var author in authors)
             {
@@ -85,7 +91,7 @@ public partial class MainPageViewModel : BaseViewModel
         }
         else if (SelectedTopicIndex == 1)
         {
-            var themes = await Task.Run(() => LibraryDb.Themes.ToList());
+            var themes = LibraryDb.Themes.ToList();
 
             foreach (var theme in themes)
             {
@@ -94,7 +100,7 @@ public partial class MainPageViewModel : BaseViewModel
         }
         else
         {
-            var categories = await Task.Run(() => LibraryDb.Categories.ToList());
+            var categories = LibraryDb.Categories.ToList();
 
             foreach (var category in categories)
             {
