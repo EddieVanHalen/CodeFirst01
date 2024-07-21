@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Windows.Forms;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,9 +17,7 @@ public partial class LibraryContext : Microsoft.EntityFrameworkCore.DbContext
     }
 
     public virtual DbSet<Author> Authors { get; set; }
-
     public virtual DbSet<Book> Books { get; set; }
-
     public virtual DbSet<Category> Categories { get; set; }
 
     public virtual DbSet<Department> Departments { get; set; }
