@@ -29,7 +29,7 @@ public partial class App : Application
         Collection.AddSingleton<MainViewModel>();
         Collection.AddSingleton<MainPageViewModel>();
         Collection.AddSingleton<ConfigurationBuilder>();
-        Collection.AddSingleton<LibraryContext>();
+        Collection.AddScoped<LibraryContext>();
 
         Provider = Collection.BuildServiceProvider();
 
